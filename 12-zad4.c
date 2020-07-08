@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
       if(c==-1)
       {
         printf("Error in closing file\n");
+        return 1;
       }
     }
     return 0;
