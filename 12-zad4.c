@@ -30,6 +30,11 @@ int main(int argc, char* argv[])
           return 1;
         }
       }
+      int c=close(fd);
+      if(c==-1)
+      {
+        printf("Error in closing file\n");
+      }
     }
     return 0;
   }
