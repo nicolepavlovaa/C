@@ -17,6 +17,7 @@ int main(int argc, char* argv[])
   if(argc==4)
   {
     int fd=open(argv[3], O_RDONLY);
+    if(fd==-1){printf("Error in opening file\n");return 1;}
     char buff[1];
     int n=1;
     int start=toint(argv[1])-1;
@@ -24,19 +25,11 @@ int main(int argc, char* argv[])
     int i=0;
     while((n=read(fd, buff, 1))!=0)
     {
-      if(n==-1)
-      {
-        printf("Error while reading\n");
-        return 1;
-      }
+      if(n==-1){printf("Error while reading\n");return 1;}
       if(i>=start && i<=end)
       {
         int w=write(1, buff, n);
-        if(w==-1)
-        {
-          printf("Error while writing\n");
-          return 1;
-        }
+        if(w==-1){printf("Error while writing\n");return 1;}
       }
       if(buff[0]=='\n')
       {
@@ -48,6 +41,7 @@ int main(int argc, char* argv[])
     if(close(fd)==-1)
     {
       printf("Error in closing file\n");
+      return 1;
     }
     return 0;
   }
